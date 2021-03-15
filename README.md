@@ -1,7 +1,5 @@
 # bearer-auth
 
-# basic-auth
-
 # LAB - Class 7
 
 ## Project: bearer-auth
