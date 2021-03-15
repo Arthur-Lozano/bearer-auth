@@ -26,7 +26,7 @@ authRouter.post('/signin', basicAuthentication, (req, res) => {
   res.status(200).json({ msg: 'Sign in successful', user:req.user});
 });
 
-authRouter.get('/oauth', bearerAuth, (req, res) => {
+authRouter.get('/user', bearerAuth, (req, res) => {
   res.status(200).json({ msg: 'User is authorized to access route', user:req.user});
 });
 
