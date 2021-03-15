@@ -10,14 +10,13 @@ const SECRET = process.env.APP_SECRET || 'cool';
 const users = new mongoose.Schema({
   username: {type: String, required: true, unique:true},
   password: {type: String, required: true}
-}, { toJson: {virtuals: true}})
+}, { toJSON: {virtuals: true}})//Make sure toJSON is case sensitive 
 
 
-users.virtual('token').get (function() {
+users.virtual('token').get(function() {
   let token = {
     username:this.username,
   }
-
   return jwt.sign(token, SECRET);//Creates token for us and adds Secret as extra verification 
 });
 
@@ -25,7 +24,7 @@ users.virtual('token').get (function() {
 //Mongoose "pre" hook to run "before" the save  method is called
 //Pre is a hook and says before you do an action do this action first
 users.pre('save', async function(){//before you save my user grab the password from user and has the crap out of it then set the password as the hashed browns 
-  this.password = await bcrypt.hash(this.password, 15);
+  this.password = await bcrypt.hash(this.password, 10);
 })
 
 
